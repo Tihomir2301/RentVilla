@@ -1,0 +1,79 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row mx-1">
+
+  <!-- Grid column -->
+  <div class="col-md-12 mb-4">
+
+    <!-- Card -->
+    <div class="card card-cascade wider reverse">
+
+      <!-- Card image -->
+      <div class="view view-cascade overlay">
+        <img class="card-img-top" src="<%= villa.image %>" alt="Card image cap">
+        <a href="#!">
+          <div class="mask rgba-white-slight waves-effect waves-light"></div>
+        </a>
+      </div>
+
+      <!-- Card content -->
+      <div class="card-body card-body-cascade text-center">
+
+        <!-- Title -->
+        <h4 class="card-title"><strong><%= villa.title %></strong></h4>
+        <!-- Subtitle -->
+        <h6 class="font-weight-bold indigo-text py-2"><%= villa.location %></h6>
+        <!-- Text -->
+        <p class="card-text"><%= villa.description %></p>
+
+        <div class="card-body">
+          <a class="card-link btn btn-info" href="/villas/<%=villa._id%>/edit">Edit</a>
+          <form class="d-inline" action="/villas/<%=villa._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="col-6">
+        <h2>Leave a review</h2>
+        <form action="/villas/<%=villa._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+          <div class="mb-3">
+            <label class="form-label" for="rating">Rating</label>
+            <input class="form-range" type="range" min="1" max="10" name="review[rating]" id="rating">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="body">Review</label>
+            <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <button class="btn btn-success">Submit</button>
+        </form>
+
+        <% if (villa.reviews && villa.reviews.length > 0) { %>
+          <% for (let review of villa.reviews) { %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">Rating: <%= review.rating %></h5>
+                <p class="card-text">Review: <%= review.body %></p>
+                <form action="/villas/<%= villa._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                  <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          <% } %>
+        <% } else { %>
+          <p>No reviews available.</p>
+        <% } %>
+
+      </div>
+
+    </div>
+    <!-- Card -->
+
+  </div>
+  <!-- Grid column -->
+
+</div>

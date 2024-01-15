@@ -1,0 +1,24 @@
+<% layout('layouts/boilerplate') %>
+
+<h1>Your Villa Selection</h1>
+
+<% for (let villa of villas){%>
+
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="<%= villa.image %>" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><%= villa.title %></h5>
+      <p class="card-text"><%= villa.description %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><%= villa.rooms %> rooms</li>
+      <li class="list-group-item">Capacity: <%= villa.people %> people</li>
+      <li class="list-group-item">Price: <%= villa.price %>$</li>
+    </ul>
+    <div class="card-body">
+      <a href="/villas/<%=villa._id%>" class="card-link">Details</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+  <% } %>

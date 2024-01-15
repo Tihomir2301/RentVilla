@@ -1,0 +1,73 @@
+<% layout('layouts/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">Edit Villa</h1>
+    <div class="col-6 offset-3">
+        <form action="/villas/<%= villa._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="villa[title]"
+                    value="<%=villa.title %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="villa[location]"
+                    value="<%=villa.location %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image Url</label>
+                <input class="form-control" type="text" id="image" name="villa[image]"
+                    value="<%=villa.image %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">Villa Price</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">$</span>
+                    <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                        aria-describedby="price-label" name="villa[price]" value="<%=villa.price %>"
+                        required>\<div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description" name="villa[description]"
+                    required><%= villa.description%></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="people">People</label>
+                <textarea class="form-control" type="text" id="people" name="villa[people]"
+                    required><%= villa.people%></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Rooms">Rooms</label>
+                <textarea class="form-control" type="text" id="rooms" name="villa[rooms]"
+                    required><%= villa.rooms%></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-info">Update Villa</button>
+            </div>
+        </form>
+        <a href="/villas/<%= villa._id %>">Villas selection</a>
+
+    </div>
+</div>
