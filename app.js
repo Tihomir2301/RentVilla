@@ -100,7 +100,7 @@ app.post('/register', catchAsync(async (req, res, next) => {
         req.login(registeredUser, err => {
             if (err) return next(err);
             req.flash('success', 'Welcome to RentVilla!');
-            res.redirect('/register');  
+            res.redirect('/villas');  
         });
     } catch (e) {
         // Handle other registration errors
@@ -152,6 +152,7 @@ app.get('/villas/new', isLoggedIn,  (req, res) => {
 app.post('/villas', isLoggedIn, catchAsync(async (req, res) => {
     
     const villa = new Villa(req.body.villa);
+    villa.author = req.user._id;
     await villa.save();
     res.redirect(`/villas/${villa._id}`)
 }))
