@@ -10,6 +10,10 @@ const VillaSchema = new Schema({
     location: String,
     rooms: Number, 
     people: Number,
+    author: {
+        type: Schema.Types.ObjectId, 
+        ref: 'User'
+    },
     reviews:[
         {
             type: Schema.Types.ObjectId, 

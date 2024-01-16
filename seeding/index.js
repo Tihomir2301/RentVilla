@@ -26,6 +26,7 @@ const seedDB = async () => {
 
 
         const villa = new Villa({
+            author: '65a3e279756a9deaf7517724',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
             image: 'https://source.unsplash.com/featured/?villa',

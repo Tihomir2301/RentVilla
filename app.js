@@ -160,7 +160,7 @@ app.post('/villas', isLoggedIn, catchAsync(async (req, res) => {
 
 
 app.get('/villas/:id', isLoggedIn, catchAsync(async (req, res) => {
-    const villa = await Villa.findById(req.params.id).populate('reviews');
+    const villa = await Villa.findById(req.params.id).populate('reviews').populate('author');
     res.render('villas/details', { villa });
 }))
 

@@ -26,6 +26,8 @@
         <!-- Text -->
         <p class="card-text"><%= villa.description %></p>
 
+        <p class="card-text">Owner: <%= villa.author.username %></p>
+
         <div class="card-body">
           <a class="card-link btn btn-info" href="/villas/<%=villa._id%>/edit">Edit</a>
           <form class="d-inline" action="/villas/<%=villa._id%>?_method=DELETE" method="POST">
