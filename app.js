@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV !=="production"){
+    require('dotenv').config();
+}
 const express = require('express'); 
 const mongoose =  require('mongoose');
 const path = require('path'); 
@@ -13,6 +16,11 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const { isLoggedIn } = require('./middleware.js');
+const multer = require('multer'); 
+const { storage } = require("./cloudinary");
+const upload = multer({ storage }); 
+
+
 
 mongoose.connect('mongodb://localhost:27017/rent-villa');
 
@@ -111,6 +119,12 @@ app.post('/register', catchAsync(async (req, res, next) => {
 }));
 
 
+app.post('/upload', upload.array('images', 3), (req, res) =>{
+    console.log(req.body, req.files); 
+    res.send("IT worked!");
+})
+
+
 app.get('/login', (req, res) =>{
     res.render('users/login')
 })
@@ -149,11 +163,13 @@ app.get('/villas/new', isLoggedIn,  (req, res) => {
     res.render('villas/new');
 })
 
-app.post('/villas', isLoggedIn, catchAsync(async (req, res) => {
+app.post('/villas', isLoggedIn, upload.array('image'), catchAsync(async (req, res) => {
     
     const villa = new Villa(req.body.villa);
+    villa.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     villa.author = req.user._id;
     await villa.save();
+    console.log(villa);
     res.redirect(`/villas/${villa._id}`)
 }))
 
@@ -186,6 +202,7 @@ app.delete('/villas/:id', isLoggedIn, catchAsync(async (req, res) => {
 app.post('/villas/:id/reviews',isLoggedIn, catchAsync(async (req, res) => {
     const villa = await Villa.findById(req.params.id);
     const review = new Review(req.body.review);
+    review.author = req.user._id;
     villa.reviews.push(review);
     await review.save();
     await villa.save();

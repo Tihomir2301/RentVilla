@@ -29,11 +29,32 @@ const seedDB = async () => {
             author: '65a3e279756a9deaf7517724',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://source.unsplash.com/featured/?villa',
             description: 'Escape to a luxurious villa nestled in the heart of paradise. This enchanting retreat offers breathtaking views of the pristine landscape, where lush gardens and azure skies create a tranquil haven. Immerse yourself in the elegance of modern design and opulent furnishings, seamlessly blending with the natural beauty that surrounds. ',
             price: price, 
             people: people,
             rooms: rooms, 
+            images: [
+
+                {
+
+                url: 'https://res.cloudinary.com/dbpkw2amo/image/upload/v1705438757/RentVilla/tbywzumofihbshsxmi08.jpg',
+                filename: 'RentVilla/tbywzumofihbshsxmi08'
+
+                },
+
+                {
+                url: 'https://res.cloudinary.com/dbpkw2amo/image/upload/v1705438757/RentVilla/mtxlqsj7h31nb3pmf35b.jpg',
+                filename: 'RentVilla/mtxlqsj7h31nb3pmf35b'
+
+                },
+
+                {
+                    url: 'https://res.cloudinary.com/dbpkw2amo/image/upload/v1705438757/RentVilla/akrlf3ridmdppfqycant.jpg',
+                    filename: 'RentVilla/akrlf3ridmdppfqycant'
+                }
+
+                
+            ]
 
         })
         await villa.save();
