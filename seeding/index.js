@@ -31,6 +31,10 @@ const seedDB = async () => {
             title: `${sample(descriptors)} ${sample(places)}`,
             description: 'Escape to a luxurious villa nestled in the heart of paradise. This enchanting retreat offers breathtaking views of the pristine landscape, where lush gardens and azure skies create a tranquil haven. Immerse yourself in the elegance of modern design and opulent furnishings, seamlessly blending with the natural beauty that surrounds. ',
             price: price, 
+            geometry: {
+                type: "Point",
+                coordinates: [-113.1331, 47.0202]
+            },
             people: people,
             rooms: rooms, 
             images: [

@@ -19,6 +19,10 @@ const { isLoggedIn } = require('./middleware.js');
 const multer = require('multer'); 
 const { storage } = require("./cloudinary");
 const upload = multer({ storage }); 
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
+
 
 
 
@@ -164,8 +168,14 @@ app.get('/villas/new', isLoggedIn,  (req, res) => {
 })
 
 app.post('/villas', isLoggedIn, upload.array('image'), catchAsync(async (req, res) => {
-    
+
+
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.villa.location,
+        limit: 1
+    }).send()
     const villa = new Villa(req.body.villa);
+    villa.geometry = geoData.body.features[0].geometry;
     villa.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     villa.author = req.user._id;
     await villa.save();
