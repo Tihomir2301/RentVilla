@@ -8,6 +8,9 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
         integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 
 <body class="d-flex flex-column vh-100">
@@ -45,6 +48,19 @@
                 })
         })()
     </script>
+
+    <script>
+        mapboxgl.accessToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-74.5, 40],
+            zoom: 9
+        });
+
+    </script>
+
+
 </body>
 
 </html>
