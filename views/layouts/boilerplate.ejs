@@ -15,50 +15,61 @@
 
 <body class="d-flex flex-column vh-100">
     <%- include('../partials/navbar')%>
-    <main class="container mt-5">
-        <%- include('../partials/flash')%>
-        <%- body %>
-    </main>
-    <%- include('../partials/footer')%>
-    <script src="https:/s/cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-        crossorigin="anonymous"></script>
+        <main class="container mt-5">
+            <%- include('../partials/flash')%>
+                <%- body %>
+        </main>
+        <%- include('../partials/footer')%>
+            <script src="https:/s/cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+                crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+                integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+                crossorigin="anonymous"></script>
 
-    <script>
-        (function () {
-            'use strict'
+            <script>
+                (function () {
+                    'use strict'
 
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.validated-form')
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    const forms = document.querySelectorAll('.validated-form')
 
-            // Loop over them and prevent submission
-            Array.from(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
+                    // Loop over them and prevent submission
+                    Array.from(forms)
+                        .forEach(function (form) {
+                            form.addEventListener('submit', function (event) {
+                                if (!form.checkValidity()) {
+                                    event.preventDefault()
+                                    event.stopPropagation()
+                                }
 
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
-    </script>
+                                form.classList.add('was-validated')
+                            }, false)
+                        })
+                })()
+            </script>
 
-    <script>
-        mapboxgl.accessToken = '<%-process.env.MAPBOX_TOKEN%>';
-        const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [-74.5, 40],
-            zoom: 9
-        });
+            <script>
 
-    </script>
+                mapboxgl.accessToken = mapToken;
+                const map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
+                    center: villa.geometry.coordinates, // starting position [lng, lat]
+                    zoom: 10 // starting zoom
+                });
+
+                new mapboxgl.Marker()
+                    .setLngLat(villa.geometry.coordinates)
+                    .setPopup(
+                        new mapboxgl.Popup({ offset: 25 })
+                            .setHTML(
+                                `<h3>${villa.title}</h3><p>${villa.location}</p>`
+                            )
+                    )
+                    .addTo(map)
+
+            </script>
 
 
 </body>
