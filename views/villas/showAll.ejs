@@ -1,7 +1,61 @@
 <% layout('layouts/boilerplate') %>
 
 
-  <h1>Your Villa Selection</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Villa Selection</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Your Villa Selection</h1>
+
+    <div class="row">
+      <% for (let villa of villas){%>
+
+        <div class="col-md-4"> <!-- Each card will take up 4 columns on medium-sized screens and above -->
+          <div class="bd-example">
+            <div class="card">
+              <img class="card-img-top" src="<%= villa.images[2].url %>" alt="Villa Image">
+              <div class="card-body">
+                <h5 class="card-title"><%= villa.title %></h5>
+                <p class="card-text"> <%= villa.description %></p>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <%= villa.rooms %> rooms
+                  </li>
+                  <li class="list-group-item">Capacity: <%= villa.people %> people</li>
+                  <li class="list-group-item">Price: <%= villa.price %>$</li>
+                </ul>
+                <div class="card-body">
+                  <a href="/villas/<%=villa._id%>" class="card-link">Details</a>
+                </div>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <% } %>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+  <!--
 
   <% for (let villa of villas){%>
 
@@ -30,6 +84,8 @@
     </div>
     <% } %>
 
+
+  -->
       <script>
         const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
         const villas = { features: <% - JSON.stringify(villas) %>};

@@ -45,6 +45,8 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')))
+
 
 
 const sessionConfig = {
@@ -182,6 +184,14 @@ app.post('/villas', isLoggedIn, upload.array('image'), catchAsync(async (req, re
     console.log(villa);
     res.redirect(`/villas/${villa._id}`)
 }))
+
+
+
+
+app.get('/villas/:id/rent', isLoggedIn, catchAsync(async(req, res) => {
+    const villa = await Villa.findById(req.params.id);
+    res.render('villas/rent', { villa });
+}));
 
 
 

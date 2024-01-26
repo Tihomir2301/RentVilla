@@ -4,38 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Villa Rentals</title>
-    <!-- Add your CSS stylesheets or link to a CSS file here -->
+    <title>RentVilla</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
 
-<body>
-
-    <header>
-        <h1>Welcome to Villa Rentals</h1>
-        <p>Your gateway to luxury villa experiences</p>
-    </header>
-
-    <section id="featured-villa">
-        <h2>Featured Villa</h2>
-        <div class="villa-card">
-            <img src="https://source.unsplash.com/featured/?villa" alt="Featured Villa Image">
-            <div class="villa-details">
-                <h3>Villa Paradise</h3>
-                <p>Experience luxury like never before in this stunning villa. With breathtaking views and modern amenities, Villa Paradise is the perfect escape.</p>
-                <a href="/villas/paradise" class="btn">Explore Villa</a>
+<body class="d-flex text-center text-white bg-dark">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <div>
+                <h3 class="float-md-left mb-0">RentVilla</h3>
+                <nav class="nav nav-masthead justify-content-center float-md-right">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="/villas">All Villas</a>
+                    <% if(!currentUser) { %>
+                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/register">Register</a>
+                    <% } else { %>
+                    <a class="nav-link" href="/logout">Logout</a>
+                    <% } %>
+                </nav>
             </div>
-        </div>
-    </section>
+        </header>
+        <main class="px-3">
+            <h1>RentVilla</h1>
+            <p class="lead"> Welcome to RentVilla! <br>Check all of our villas and rent for the best experience<br>
+                The site is still under construction. !</p>
+            <a href="/villas" class="btn btn-lg btn-secondary font-weight-bold border-white bg-white">Go to villas</a>
+        </main>
 
-    <section id="explore-villas">
-        <h2>Explore Our Villas</h2>
-        <!-- Add more villa cards or a grid here based on your design -->
-    </section>
+        <footer class="mt-auto text-white-50">
+            <p>&copy; 2024 </p>
+        </footer>
 
-    <footer>
-        <p>&copy; 2024 Villa Rentals. All rights reserved.</p>
-    </footer>
 
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

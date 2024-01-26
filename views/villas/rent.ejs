@@ -1,0 +1,121 @@
+<!-- views/villas/rent.ejs -->
+<% layout('layouts/boilerplate') %>
+
+    <!-- views/villas/rent.ejs -->
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <!-- Include Bootstrap CSS from CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <!-- Your custom CSS styles -->
+
+        <link rel="stylesheet" href="/style.css">
+
+
+    </head>
+
+    <body>
+        <div id="booking" class="section">
+            <div class="section-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="booking-form">
+                            <div class="form-header">
+                                <h1>Make your reservation for <%=villa.title %>
+                                </h1>
+                            </div>
+                            <form action="/villas/<%= villa._id %>/rent" method="POST">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input class="form-control" type="date" name="checkIn" required>
+                                            <span class="form-label">Check In</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input class="form-control" type="date" name="checkOut" required>
+                                            <span class="form-label">Check Out</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <select class="form-control" name="rooms" required>
+                                                <option value="" selected hidden>No of rooms (Max: <%= villa.rooms %>
+                                                        rooms)</option>
+                                                <% for (let i=1; i <=villa.rooms; i ++) { %>
+                                                    <option value="<% i %>">
+                                                        <%= i %>
+                                                    </option>
+                                                    <% } %>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                            <span class="form-label">Rooms</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <select class="form-control" name="guests" required>
+                                                <option value="" selected hidden>No of guests (Max: <%= villa.people %>
+                                                        guests)</option>
+                                                <% for (let i=1; i <=villa.people; i ++) { %>
+                                                    <option value="<% i %>">
+                                                        <%= i %>
+                                                    </option>
+                                                    <% } %>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                            <span class="form-label">Adults</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <select class="form-control" name="children" required>
+                                                <option value="" selected hidden>No of children</option>
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>>2</option>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                            <span class="form-label">Children</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input class="form-control" type="email" name="email"
+                                                placeholder="Enter your Email" required>
+                                            <span class="form-label">Email</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input class="form-control" type="tel" name="phone"
+                                                placeholder="Enter your Phone" required>
+                                            <span class="form-label">Phone</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-btn">
+                                    <button type="submit" class="submit-btn">Book Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Include Bootstrap JS from CDN if needed -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    </body>
+
+    </html>
