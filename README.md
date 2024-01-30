@@ -35,7 +35,6 @@ RentVilla is a web application for renting villas.
 - Register for an account or log in if you already have one.
 - Browse available villas, view details, and book a villa.
 - Leave reviews for villas you've stayed at.
-- Update your profile information.
 
 ## Contributing
 
